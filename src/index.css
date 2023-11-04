@@ -11,3 +11,10 @@
 body {
   font-family: "Noto Sans", sans-serif;
 }
+
+.active{
+  background-color: #73CE7F;
+  padding: 8px 15px;
+  border-radius: 25px;
+  color: black;
+}
