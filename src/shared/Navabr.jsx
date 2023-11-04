@@ -58,9 +58,11 @@ const Navabr = () => {
               {navLinks}
             </ul>
             <div className="space-x-3 ">
-              <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
-                Register
-              </button>
+              <Link to={"/register"}>
+                <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
+                  Register
+                </button>
+              </Link>
               <Link to={"/login"}>
                 <button className="btn px-2 bg-main hover:bg-main capitalize  ">
                   login
@@ -98,10 +100,16 @@ const Navabr = () => {
             </div>
           </div>
           <div className="navbar-end space-x-3 lg:hidden">
-            <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent capitalize hover:text-black">
-              Register
-            </button>
-            <button className="btn px-2 bg-main capitalize">login</button>
+            <Link to={"/register"}>
+              <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
+                Register
+              </button>
+            </Link>
+            <Link to={"/login"}>
+              <button className="btn px-2 bg-main hover:bg-main capitalize  ">
+                login
+              </button>
+            </Link>
           </div>
         </div>
       </div>

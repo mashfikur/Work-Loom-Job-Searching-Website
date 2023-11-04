@@ -1,9 +1,13 @@
+import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
     <div>
+      <Helmet>
+        <title>Work Looms | Login </title>
+      </Helmet>
       <div className="bg-base-200 py-8">
         <div className="container mx-auto">
           <div className="hero min-h-[80vh] pb-5  bg-white rounded-lg ">
@@ -56,7 +60,9 @@ const Login = () => {
                 <div className="text-center  font-inter font-semibold mb-6">
                   <p className="">
                     {"Don't"} have an account ?{" "}
-                    <Link className="text-third btn-link">Register</Link>{" "}
+                    <Link to={"/register"} className="text-third btn-link">
+                      Register
+                    </Link>{" "}
                   </p>
                 </div>
               </div>
