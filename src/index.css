@@ -1,7 +1,9 @@
 /* google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,600;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,600;1,800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap");
 /* google fonts */
 
 @tailwind base;
@@ -12,8 +14,8 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
-.active{
-  background-color: #73CE7F;
+.active {
+  background-color: #73ce7f;
   padding: 8px 15px;
   border-radius: 25px;
   color: black;

@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import errorImg from "../assets/images/404.png";
 import { FaHome } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
   return (
     <div className="min-h-[90vh] text-center flex flex-col items-center justify-center">
+      <Helmet>
+        <title>Work Loom | Error</title>
+      </Helmet>
+
       <div>
         <h3 className="text-4xl text-third font-bold">
           THE PAGE YOU REQUETSED WAS NOT FOUND !{" "}

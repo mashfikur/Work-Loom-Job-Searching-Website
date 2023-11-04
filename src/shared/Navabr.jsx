@@ -15,7 +15,7 @@ const Navabr = () => {
 
   return (
     <div>
-      <div className="border-b-[1px] mb-12 border-[#E1DBE1]">
+      <div className="border-b-[1px] border-[#E1DBE1]">
         <div className="navbar container py-5 mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
@@ -61,7 +61,11 @@ const Navabr = () => {
               <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
                 Register
               </button>
-              <button className="btn px-2 bg-main capitalize  ">login</button>
+              <Link to={"/login"}>
+                <button className="btn px-2 bg-main hover:bg-main capitalize  ">
+                  login
+                </button>
+              </Link>
             </div>
             <div className="dropdown dropdown-end">
               <div className="tooltip  tooltip-success" data-tip="user">

@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         raleway: "Raleway, sans-serif",
+        inter: "Inter, sans-serif",
       },
       colors: {
         main: "#73ce7f",
