@@ -1,17 +1,39 @@
 import { Link, NavLink } from "react-router-dom";
 import navlogo from "../assets/images/final-logo.png";
+import useAuthContext from "../hooks/useAuthContext";
+import { MdAccountCircle } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
+import toast from "react-hot-toast";
 
 const Navabr = () => {
+  const { user, userSignOut } = useAuthContext();
+
   const navLinks = (
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/demo"}>All Jobs</NavLink>
-      <NavLink to={"/demo"}>Applied Jobs</NavLink>
-      <NavLink to={"/demo"}>Add A Job</NavLink>
-      <NavLink to={"/demo"}>My Jobs</NavLink>
+      {user ? (
+        <>
+          <NavLink to={"/demo"}>Applied Jobs</NavLink>
+          <NavLink to={"/demo"}>Add A Job</NavLink>
+          <NavLink to={"/demo"}>My Jobs</NavLink>
+        </>
+      ) : (
+        ""
+      )}
       <NavLink to={"/demo"}>Blogs</NavLink>
     </>
   );
+
+  const handleSignOut = () => {
+    userSignOut()
+      .then(() => {
+        toast.success("Logged Out Successfully");
+      })
+      .catch((error) => {
+        toast.error(error.code);
+      });
+  };
 
   return (
     <div>
@@ -54,62 +76,121 @@ const Navabr = () => {
             </Link>
           </div>
           <div className="navbar-end hidden lg:flex space-x-4">
-            <ul className="flex font-semibold items-center gap-6 px-1">
-              {navLinks}
-            </ul>
-            <div className="space-x-3 ">
-              <Link to={"/register"}>
-                <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
-                  Register
-                </button>
-              </Link>
-              <Link to={"/login"}>
-                <button className="btn px-2 bg-main hover:bg-main capitalize  ">
-                  login
-                </button>
-              </Link>
-            </div>
-            <div className="dropdown dropdown-end">
-              <div className="tooltip  tooltip-success" data-tip="user">
-                <label
-                  tabIndex={0}
-                  className=" btn btn-circle hover:border-main hover:border-4 avatar"
-                >
-                  <div className="w-10 rounded-full ">
-                    <img src={`https://i.ibb.co/Jd8YMt3/avatar.png`} />
-                  </div>
-                </label>
-              </div>
-              <ul
-                tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
+            {user ? (
+              <ul className="flex font-semibold items-center gap-6 px-1">
+                {navLinks}
               </ul>
-            </div>
+            ) : (
+              <div className="space-x-3 ">
+                <Link to={"/register"}>
+                  <button className="btn rounded-full btn-outline border-main text-main hover:bg-main hover:border-transparent    hover:text-black">
+                    Register
+                  </button>
+                </Link>
+                <Link to={"/login"}>
+                  <button className="btn rounded-full bg-main hover:bg-main   ">
+                    login
+                  </button>
+                </Link>
+              </div>
+            )}
+            {user ? (
+              <div className="dropdown dropdown-end">
+                <div
+                  className="tooltip tooltip-right"
+                  data-tip={`${user?.displayName}`}
+                >
+                  <label
+                    tabIndex={0}
+                    className=" btn btn-circle btn-ghost  hover:border-main hover:border-4 avatar"
+                  >
+                    <div className="w-10 rounded-full border-red-300 ">
+                      <img
+                        className=""
+                        src={
+                          user?.photoURL
+                            ? user.photoURL
+                            : `https://i.ibb.co/Jd8YMt3/avatar.png`
+                        }
+                      />
+                    </div>
+                  </label>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li className="">
+                    <p className=" mx-auto font-semibold text-xl">
+                      <MdAccountCircle></MdAccountCircle> {user?.displayName}
+                    </p>
+                  </li>
+                  <li className="mt-5">
+                    <button
+                      onClick={handleSignOut}
+                      className="btn btn-error hover:bg-error btn-sm rounded-full my-auto"
+                    >
+                      <FiLogOut></FiLogOut> Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          <div className="navbar-end space-x-3 lg:hidden">
-            <Link to={"/register"}>
-              <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
-                Register
-              </button>
-            </Link>
-            <Link to={"/login"}>
-              <button className="btn px-2 bg-main hover:bg-main capitalize  ">
-                login
-              </button>
-            </Link>
+          <div className="navbar-end  lg:hidden">
+            {user ? (
+              <div className="dropdown dropdown-end">
+                <div>
+                  <label
+                    tabIndex={0}
+                    className=" btn btn-circle  hover:border-main hover:border-4 avatar"
+                  >
+                    <div className="w-10 rounded-full border-main ">
+                      <img
+                        src={
+                          user?.photoURL
+                            ? user.photoURL
+                            : `https://i.ibb.co/Jd8YMt3/avatar.png`
+                        }
+                      />
+                    </div>
+                  </label>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  <li className="">
+                    <p className=" mx-auto font-semibold text-xl">
+                      <MdAccountCircle></MdAccountCircle> {user.displayName}
+                    </p>
+                  </li>
+                  <li className="mt-5">
+                    <button
+                      onClick={handleSignOut}
+                      className="btn btn-error hover:bg-error btn-sm rounded-full my-auto"
+                    >
+                      <FiLogOut></FiLogOut> Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <div className="space-x-3">
+                <Link to={"/register"}>
+                  <button className="btn px-2 btn-outline border-main text-main hover:bg-main hover:border-transparent   capitalize hover:text-black">
+                    Register
+                  </button>
+                </Link>
+                <Link to={"/login"}>
+                  <button className="btn px-2 bg-main hover:bg-main capitalize  ">
+                    login
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

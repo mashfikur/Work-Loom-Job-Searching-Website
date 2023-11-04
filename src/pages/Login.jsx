@@ -1,12 +1,36 @@
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthContext from "../hooks/useAuthContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const { userSignIn, setLoading, setUser } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    //user sign in
+    userSignIn(email, password)
+      .then(() => {
+        toast.success("Logged in Successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.code);
+        setUser(null);
+        setLoading(false);
+      });
+  };
+
   return (
     <div>
       <Helmet>
-        <title>Work Looms | Login </title>
+        <title>Work Loom | Login </title>
       </Helmet>
       <div className="bg-base-200 py-8">
         <div className="container mx-auto">
@@ -21,7 +45,7 @@ const Login = () => {
                 </p>
               </div>
               <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                <form className="card-body">
+                <form onSubmit={handleSubmit} className="card-body">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text">Email</span>
@@ -31,6 +55,7 @@ const Login = () => {
                       placeholder="email"
                       className="input input-bordered focus:border-none focus:outline-third "
                       required
+                      name="email"
                     />
                   </div>
                   <div className="form-control">
@@ -42,6 +67,7 @@ const Login = () => {
                       placeholder="password"
                       className="input input-bordered focus:border-none focus:outline-third "
                       required
+                      name="password"
                     />
                   </div>
                   <div className="form-control mt-6">
