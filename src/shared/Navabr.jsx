@@ -102,11 +102,11 @@ const Navabr = () => {
                 >
                   <label
                     tabIndex={0}
-                    className=" btn btn-circle btn-ghost  hover:border-main hover:border-4 avatar"
+                    className=" btn btn-circle btn-ghost border-main border-4 "
                   >
-                    <div className="w-10 rounded-full border-red-300 ">
+                    <div className=" ">
                       <img
-                        className=""
+                        className="w-10 h-10 object-cover rounded-full"
                         src={
                           user?.photoURL
                             ? user.photoURL
@@ -118,11 +118,16 @@ const Navabr = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box  border-2"
                 >
                   <li className="">
                     <p className=" mx-auto font-semibold text-xl">
-                      <MdAccountCircle></MdAccountCircle> {user?.displayName}
+                      {user?.displayName}
+                    </p>
+                    <p className="mx-auto border-2 font-inter border-[#E1DBE1] rounded-full drop-shadow-lg ">
+                      {" "}
+                      <MdAccountCircle className="text-xl"></MdAccountCircle>{" "}
+                      {user?.email}
                     </p>
                   </li>
                   <li className="mt-5">
@@ -145,7 +150,7 @@ const Navabr = () => {
                 <div>
                   <label
                     tabIndex={0}
-                    className=" btn btn-circle  hover:border-main hover:border-4 avatar"
+                    className=" btn btn-circle  border-main border-4 avatar"
                   >
                     <div className="w-10 rounded-full border-main ">
                       <img
@@ -160,11 +165,16 @@ const Navabr = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box "
                 >
                   <li className="">
                     <p className=" mx-auto font-semibold text-xl">
-                      <MdAccountCircle></MdAccountCircle> {user.displayName}
+                      {user.displayName}
+                    </p>
+                    <p className="mx-auto border-2 font-inter border-[#E1DBE1] rounded-full drop-shadow-lg ">
+                      {" "}
+                      <MdAccountCircle className="text-xl"></MdAccountCircle>{" "}
+                      {user?.email}
                     </p>
                   </li>
                   <li className="mt-5">

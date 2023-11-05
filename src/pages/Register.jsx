@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import navlogo from "../assets/images/final-logo.png";
 import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
@@ -10,6 +10,7 @@ import { updateProfile } from "firebase/auth";
 const Register = () => {
   const { createUser } = useAuthContext();
   const [showError, setShowError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +42,14 @@ const Register = () => {
         updateProfile(result.user, {
           displayName: name,
           photoURL: image,
-        });
+        })
+          .then(() => {
+            navigate("/");
+            window.location.reload();
+          })
+          .catch((error) => {
+            toast.error(error.code);
+          });
       })
       .catch((error) => {
         toast.error(error.code);
