@@ -5,7 +5,8 @@ import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { userSignIn, setLoading, setUser } = useAuthContext();
+  const { userSignIn, setLoading, setUser, googleUserAuth } = useAuthContext();
+  // const { handleGoogleAuth } = useGoogleAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -23,6 +24,18 @@ const Login = () => {
       .catch((error) => {
         toast.error(error.code);
         setUser(null);
+        setLoading(false);
+      });
+  };
+
+  const handleGoogleAuth = () => {
+    googleUserAuth()
+      .then(() => {
+        toast.success("Logged In Successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.code);
         setLoading(false);
       });
   };
@@ -78,7 +91,10 @@ const Login = () => {
                 </form>
                 <div className="divider -mt-4">OR</div>
                 <div className=" flex items-center px-7 mb-6 justify-center">
-                  <button className="btn w-full rounded-full shadow-xl border-2 font-inter font-semibold">
+                  <button
+                    onClick={handleGoogleAuth}
+                    className="btn w-full rounded-full shadow-xl border-2 font-inter font-semibold"
+                  >
                     <FcGoogle className="text-xl"></FcGoogle>
                     Sign In With Google
                   </button>

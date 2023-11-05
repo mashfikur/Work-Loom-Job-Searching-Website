@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { createUser } = useAuthContext();
+  const { createUser, googleUserAuth, setLoading } = useAuthContext();
+  // const { handleGoogleAuth } = useGoogleAuth();
   const [showError, setShowError] = useState("");
   const navigate = useNavigate();
 
@@ -53,6 +54,18 @@ const Register = () => {
       })
       .catch((error) => {
         toast.error(error.code);
+      });
+  };
+
+  const handleGoogleAuth = () => {
+    googleUserAuth()
+      .then(() => {
+        toast.success("Created Account Successfully");
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error(error.code);
+        setLoading(false);
       });
   };
 
@@ -137,7 +150,10 @@ const Register = () => {
                 </form>
                 <div className="divider -mt-4">OR</div>
                 <div className=" flex items-center px-7 mb-6 justify-center">
-                  <button className="btn w-full rounded-full shadow-xl border-2 font-inter font-semibold">
+                  <button
+                    onClick={handleGoogleAuth}
+                    className="btn w-full rounded-full shadow-xl border-2 font-inter font-semibold"
+                  >
                     <FcGoogle className="text-xl"></FcGoogle>
                     Sign Up With Google
                   </button>

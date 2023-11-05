@@ -6,7 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 import toast from "react-hot-toast";
 
 const Navabr = () => {
-  const { user, userSignOut } = useAuthContext();
+  const { user, userSignOut, loading } = useAuthContext();
 
   const navLinks = (
     <>
@@ -76,28 +76,35 @@ const Navabr = () => {
             </Link>
           </div>
           <div className="navbar-end hidden lg:flex space-x-4">
-            {user ? (
-              <ul className="flex font-semibold items-center gap-6 px-1">
-                {navLinks}
-              </ul>
+            <ul className="flex font-semibold items-center gap-6 px-1">
+              {navLinks}
+            </ul>
+
+            {loading ? (
+              <div>
+                <span className="loading loading-spinner text-success loading-lg"></span>
+              </div>
+            ) : user ? (
+              ""
             ) : (
-              <div className="space-x-3 ">
+              <div className="space-x-3 flex ">
                 <Link to={"/register"}>
-                  <button className="btn rounded-full btn-outline border-main text-main hover:bg-main hover:border-transparent    hover:text-black">
+                  <button className="btn rounded-full btn-outline border-[#1687C9] text-[#1687C9] hover:bg-[#1687C9] hover:border-transparent    hover:text-white">
                     Register
                   </button>
                 </Link>
                 <Link to={"/login"}>
-                  <button className="btn rounded-full bg-main hover:bg-main   ">
+                  <button className="btn text-white rounded-full bg-[#1687C9] hover:bg-[#1687C9]  ">
                     login
                   </button>
                 </Link>
               </div>
             )}
+
             {user ? (
               <div className="dropdown dropdown-end">
                 <div
-                  className="tooltip tooltip-right"
+                  className="xl:tooltip"
                   data-tip={`${user?.displayName}`}
                 >
                   <label
@@ -145,7 +152,11 @@ const Navabr = () => {
             )}
           </div>
           <div className="navbar-end  lg:hidden">
-            {user ? (
+            {loading ? (
+              <div>
+                <span className="loading loading-spinner text-success loading-lg"></span>
+              </div>
+            ) : user ? (
               <div className="dropdown dropdown-end">
                 <div>
                   <label
