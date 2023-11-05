@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "employee_name": "Jessica Williams",
+      "employee_img": "https://randomuser.me/api/portraits/women/90.jpg",
+      "job_title": "Senior Software Engineer",
+      "current_company": "Tech Innovations Inc.",
+      "review": "Work Loom was a game-changer for me. I found my dream job as a Senior Software Engineer at Tech Innovations Inc. within weeks of signing up. The platform's user-friendly interface and personalized job recommendations made the job search process a breeze."
+    },
+    {
+      "id": 2,
+      "employee_name": "Michael Johnson",
+      "employee_img": "https://randomuser.me/api/portraits/men/57.jpg",
+      "job_title": "Marketing Manager",
+      "current_company": "Digital Media Solutions",
+      "review": "I owe my career success to Work Loom. It connected me with Digital Media Solutions, where I now work as a Marketing Manager. The job matches were spot on, and the support from the Work Loom team was exceptional."
+    },
+    {
+      "id": 3,
+      "employee_name": "Liam Smith",
+      "employee_img": "https://randomuser.me/api/portraits/men/20.jpg",
+      "job_title": "UX Designer",
+      "current_company": "Creative Innovations Agency",
+      "review": "I'm grateful to Work Loom for helping me find my dream job as a UX Designer at Creative Innovations Agency. The platform's job listings and interview tips were invaluable in my job search journey."
+    },
+    {
+      "id": 4,
+      "employee_name": "Olivia Davis",
+      "employee_img": "https://randomuser.me/api/portraits/women/71.jpg",
+      "job_title": "Financial Analyst",
+      "current_company": "Global Finance Group",
+      "review": "Work Loom made my career transition seamless. I landed my dream job as a Financial Analyst at Global Finance Group thanks to their tailored job recommendations and interview preparation resources."
+    },
+    {
+      "id": 5,
+      "employee_name": "Daniel Lee",
+      "employee_img": "https://randomuser.me/api/portraits/men/92.jpg",
+      "job_title": "Business Specialist",
+      "current_company": "City General Data Center",
+      "review": "Work Loom is a lifesaver. It led me to my dream job as a Registered Nurse at City General Hospital. The platform's job alerts and resume-building tools made the process hassle-free."
+    },
+    {
+      "id": 6,
+      "employee_name": "Emily White",
+      "employee_img": "https://randomuser.me/api/portraits/women/81.jpg",
+      "job_title": "Data Scientist",
+      "current_company": "InnovateTech Solutions",
+      "review": "I can't thank Work Loom enough for helping me secure my dream job as a Data Scientist at InnovateTech Solutions. The platform's resources and job matching algorithms are unparalleled."
+    }
+  ]
+  

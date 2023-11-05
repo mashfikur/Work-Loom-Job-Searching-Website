@@ -70,7 +70,10 @@ const Navabr = () => {
                   <img className="w-16" src={navlogo} alt="" />
                 </div>
                 <h3 className="font-raleway  normal-case text-xl lg:text-4xl">
-                  Work <span className="text-third">Loom</span>
+                  Work{" "}
+                  <span className="bg-clip-text text-transparent bg-gradient-to-br from-[#5BFBBB] to-[#004472]">
+                    Loom
+                  </span>
                 </h3>
               </div>
             </Link>
@@ -103,10 +106,7 @@ const Navabr = () => {
 
             {user ? (
               <div className="dropdown dropdown-end">
-                <div
-                  className="xl:tooltip"
-                  data-tip={`${user?.displayName}`}
-                >
+                <div className="xl:tooltip" data-tip={`${user?.displayName}`}>
                   <label
                     tabIndex={0}
                     className=" btn btn-circle btn-ghost border-main border-4 "
