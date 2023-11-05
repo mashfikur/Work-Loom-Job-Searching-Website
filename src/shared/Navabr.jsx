@@ -21,7 +21,7 @@ const Navabr = () => {
       ) : (
         ""
       )}
-      <NavLink to={"/demo"}>Blogs</NavLink>
+      <NavLink to={"/blog"}>Blogs</NavLink>
     </>
   );
 

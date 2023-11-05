@@ -1,4 +1,3 @@
-//eslint-disable-next-line
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import toast from "react-hot-toast";
