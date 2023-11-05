@@ -130,7 +130,7 @@ const Banner = () => {
               className="input px-8 input-bordered focus:outline-none rounded-l-full w-full"
             />
             <div>
-              <button className="btn bg-main hover:bg-third border-none rounded-none rounded-r-full">
+              <button className="btn bg-third hover:bg-third border-none rounded-none rounded-r-full">
                 <div className="px-3">
                   <BsSearch className="text-xl"></BsSearch>
                 </div>

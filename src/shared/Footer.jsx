@@ -3,9 +3,9 @@ import navlogo from "../assets/images/final-logo.png";
 
 const Footer = () => {
   return (
-    <div>
-      <div>
-        <footer className="footer p-10 bg-main font-semibold  text-base">
+    <div className="bg-third ">
+      <div className="container mx-auto">
+        <footer className="footer p-10 font-semibold   text-base">
           <div className="flex flex-col items-center">
             <div>
               <img className="w-20" src={navlogo} alt="" />

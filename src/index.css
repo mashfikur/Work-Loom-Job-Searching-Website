@@ -15,10 +15,10 @@ body {
 }
 
 .active {
-  background-color: #73ce7f;
+  background-color: #66ae3d;
   padding: 8px 15px;
   border-radius: 25px;
-  color: black;
+  color: white;
 }
 
 .banner-overlay {
@@ -31,7 +31,7 @@ body {
   color: white;
 }
 
-.alert-banner{
+.alert-banner {
   background: url("https://i.ibb.co/FBTQ6HZ/newsletter.jpg");
   background-size: cover;
   background-position: center;

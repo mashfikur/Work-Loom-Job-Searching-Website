@@ -109,7 +109,7 @@ const Navabr = () => {
                 <div className="xl:tooltip" data-tip={`${user?.displayName}`}>
                   <label
                     tabIndex={0}
-                    className=" btn btn-circle btn-ghost border-main border-4 "
+                    className=" btn btn-circle btn-ghost border-third border-4 "
                   >
                     <div className=" ">
                       <img
