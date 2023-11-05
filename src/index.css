@@ -21,6 +21,13 @@ body {
   color: black;
 }
 
-.banner-overlay{
-  background-color: rgba(0, 0, 0, .6);
+.banner-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.active-tab {
+  background: #1687c9;
+  border-radius: 6px 6px 0px 0px;
+  font-weight: 700;
+  color: white;
+
 }

@@ -112,7 +112,7 @@ const Banner = () => {
               }}
             >
               <div className="text-center">
-                <h3 className="md:text-7xl text-5xl z-40 mt-4 font-inter text-white font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#5BFBBB] to-[#004472] ">
+                <h3 className="md:text-7xl text-5xl z-40 mt-4 font-inter font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#5BFBBB] to-[#004472] ">
                   Work Loom
                 </h3>
                 <p className=" font-bold md:text-xl text-gray-200">
