@@ -19,8 +19,13 @@ const EmployeeCard = ({ employee }) => {
             <p className=" px-4  text-center flex flex-col justify-center items-center bg-black text-white rounded-full">
               {employee.job_title}
             </p>
-            <p className="text-xl font-bold font-inter text-gray-400">{employee.current_company}</p>
-            <p>{employee.review}</p>
+            <p className="text-xl font-bold font-inter ">
+              {employee.current_company}
+            </p>
+            <p className="font-bold  text-gray-400">
+              {' "'} {employee.review}
+              {' "'}
+            </p>
           </div>
         </div>
       </div>

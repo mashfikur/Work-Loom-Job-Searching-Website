@@ -59,7 +59,7 @@ const Navabr = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content border-2 mt-3 z-[1] p-4 shadow bg-base-100 rounded-box w-52 space-y-3 text-third font-bold"
+                className="menu menu-sm dropdown-content border-2 mt-3 z-50 p-4 shadow bg-base-100 rounded-box w-52 space-y-3 text-third font-bold"
               >
                 {navLinks}
               </ul>
@@ -92,12 +92,12 @@ const Navabr = () => {
             ) : (
               <div className="space-x-3 flex ">
                 <Link to={"/register"}>
-                  <button className="btn rounded-full btn-outline border-[#1687C9] text-[#1687C9] hover:bg-[#1687C9] hover:border-transparent    hover:text-white">
+                  <button className="btn rounded-xl btn-outline border-[#1687C9] text-[#1687C9] hover:bg-[#1687C9] hover:border-transparent    hover:text-white">
                     Register
                   </button>
                 </Link>
                 <Link to={"/login"}>
-                  <button className="btn text-white rounded-full bg-[#1687C9] hover:bg-[#1687C9]  ">
+                  <button className="btn text-white rounded-xl bg-[#1687C9] hover:bg-[#1687C9]  ">
                     login
                   </button>
                 </Link>
@@ -125,10 +125,10 @@ const Navabr = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box  border-2"
+                  className="mt-3 z-50 p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box  border-2"
                 >
                   <li className="">
-                    <p className=" mx-auto font-semibold text-xl">
+                    <p className=" btn-ghost mx-auto font-semibold text-xl">
                       {user?.displayName}
                     </p>
                     <p className="mx-auto border-2 font-inter border-[#E1DBE1] rounded-full drop-shadow-lg ">
@@ -176,7 +176,7 @@ const Navabr = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box "
+                  className="mt-3 z-50 p-2  shadow menu menu-sm dropdown-content bg-base-100 rounded-box "
                 >
                   <li className="">
                     <p className=" mx-auto font-semibold text-xl">

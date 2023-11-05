@@ -12,7 +12,7 @@ const CategoryTabs = () => {
         disableUpDownKeys={true}
         selectedTabClassName="active-tab"
       >
-        <TabList>
+        <TabList className={"text-gray-400 shadow-xl border-2 px-6 py-3 rounded-xl"} >
           <Tab>On Site</Tab>
           <Tab>Remote</Tab>
           <Tab>Hybrid</Tab>

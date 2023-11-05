@@ -26,8 +26,13 @@ body {
 }
 .active-tab {
   background: #1687c9;
-  border-radius: 6px 6px 0px 0px;
+  border-radius: 6px 6px 6px 6px;
   font-weight: 700;
   color: white;
+}
 
+.alert-banner{
+  background: url("https://i.ibb.co/FBTQ6HZ/newsletter.jpg");
+  background-size: cover;
+  background-position: center;
 }
