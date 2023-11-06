@@ -1,27 +1,64 @@
 //eslint-disable-next-line
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 import { FaLocationArrow } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Blog = () => {
-  const { data } = useQuery({
+  const axiosCustom = useAxios();
+
+  const { data, isPending } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const res = await fetch("/blogs.json");
-
-      return res.json();
+      return axiosCustom.get("/api/v1/blogs").then((res) => {
+        return res.data;
+      });
     },
   });
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>Work Loom | Blogs </title>
+      </Helmet>
+
       <div className="my-8">
         <h3 className="font-inter drop-shadow-2xl mb-4 font-bold text-4xl text-center">
           My <span className="text-third">Blog</span>
         </h3>
         <hr className="border-2 drop-shadow-2xl border-third mx-auto w-28" />
       </div>
+
+      {isPending && (
+        <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-2">
+          {Array(3)
+            .fill(0)
+            .map((idx) => (
+              <div className="rounded-xl h-[38rem] bg-base-200 p-4 " key={idx}>
+                <Skeleton
+                  borderRadius={"10px"}
+                  className=" h-[20rem] mb-4 shadow-xl"
+                ></Skeleton>
+                <Skeleton className="h-[3rem] mb-4"></Skeleton>
+
+                <Skeleton className="h-[1rem]" count={3}></Skeleton>
+
+                <div className="flex -mt-2 items-center justify-center">
+                  <Skeleton
+                    borderRadius={"25px"}
+                    width={"130px"}
+                    className="mt-16 h-10"
+                  ></Skeleton>
+                </div>
+              </div>
+            ))}
+        </div>
+      )}
 
       {/* blog container */}
       <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-5 ">
@@ -48,7 +85,7 @@ const Blog = () => {
                     </p>
                   </div>
                   <div className="flex items-center justify-center">
-                    <Link to={`/blog/${blog.blog_id}`}>
+                    <Link to={`/blogs/blog/${blog.blog_id}`}>
                       <button className="btn bg-third hover:bg-third font-inter capitalize font-bold rounded-full text-base">
                         Read More
                         <FaLocationArrow className="text-xl"></FaLocationArrow>
