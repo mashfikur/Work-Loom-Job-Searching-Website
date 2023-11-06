@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { FaLocationArrow } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   const { data } = useQuery({
@@ -47,14 +48,51 @@ const Blog = () => {
                     </p>
                   </div>
                   <div className="flex items-center justify-center">
-                    <button className="btn bg-third hover:bg-third font-inter capitalize font-bold rounded-full text-base">
-                      Read More
-                      <FaLocationArrow className="text-xl"></FaLocationArrow>
-                    </button>
+                    <Link to={`/blog/${blog.blog_id}`}>
+                      <button className="btn bg-third hover:bg-third font-inter capitalize font-bold rounded-full text-base">
+                        Read More
+                        <FaLocationArrow className="text-xl"></FaLocationArrow>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
+          ))}
+      </div>
+
+      {/* modals */}
+
+      <div className="w-screen">
+        {data &&
+          data.map((blog) => (
+            <dialog
+              key={blog.blog_id}
+              id={`Blog-${blog.blog_id}`}
+              className="modal banner-overlay "
+            >
+              <div className="modal-box ">
+                <form method="dialog">
+                  {/* closing button */}
+                  <button className="btn btn-sm btn-circle bg-error hover:bg-error absolute right-2 top-2">
+                    ✕
+                  </button>
+                </form>
+                <h3 className="font-bold my-6 text-3xl font-inter text-third drop-shadow-xl text-center ">
+                  {blog.blog_title}
+                </h3>
+
+                <div>
+                  <img
+                    className="w-full object-cover h-60 rounded-xl"
+                    src={blog.blog_img}
+                    alt=""
+                  />
+                </div>
+
+                <p className="py-4 font-inter  ">{blog.desc}</p>
+              </div>
+            </dialog>
           ))}
       </div>
     </div>

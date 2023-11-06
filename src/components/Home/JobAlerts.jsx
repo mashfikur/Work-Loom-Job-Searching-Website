@@ -46,10 +46,9 @@ const JobAlerts = () => {
               Stay Ahead of the Curve with Job Alerts!
             </p>
             <p className="text-gray-400 font-inter hidden lg:flex font-bold hi">
-              {"Don't"} miss out on your dream job. Subscribe to our
+               Subscribe to our
               newsletter-style job alerts and be the first to know about the{" "}
-              <br /> latest opportunities that match your preferences. Get
-              personalized job notifications directly <br /> in your inbox, and
+              <br /> latest opportunities that match your preferences and
               stay on the path to career success.
             </p>
             <div className="w-[100%] lg:w-[30%] my-8">
