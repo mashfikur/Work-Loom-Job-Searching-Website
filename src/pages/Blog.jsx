@@ -8,6 +8,7 @@ import useAxios from "../hooks/useAxios";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useEffect } from "react";
 
 const Blog = () => {
   const axiosCustom = useAxios();
@@ -20,6 +21,10 @@ const Blog = () => {
       });
     },
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="container mx-auto">
@@ -65,7 +70,7 @@ const Blog = () => {
         {data &&
           data.map((blog) => (
             <div key={blog.blog_id}>
-              <div className="card card-compactw-full h-[38rem] bg-base-100 shadow-xl">
+              <div className="card card-compactw-full h-[42rem] lg:h-[38rem] bg-base-100 shadow-xl">
                 <figure>
                   <img
                     className="h-[20rem] w-full object-cover lg:object-fill"
@@ -74,7 +79,7 @@ const Blog = () => {
                   />
                 </figure>
                 <div className="card-body flex flex-col p-4">
-                  <div className="mb-4 h-20 lg:h-28 xl:h-16">
+                  <div className="mb-12 md:mb-4 h-20 lg:h-28 xl:h-16">
                     <h2 className="font-inter font-bold text-2xl text-center ">
                       {blog.blog_title}
                     </h2>
@@ -85,7 +90,7 @@ const Blog = () => {
                     </p>
                   </div>
                   <div className="flex items-center justify-center">
-                    <Link to={`/blogs/blog/${blog.blog_id}`}>
+                    <Link to={`/blogs/blog/${blog._id}`}>
                       <button className="btn bg-third hover:bg-third font-inter capitalize font-bold rounded-full text-base">
                         Read More
                         <FaLocationArrow className="text-xl"></FaLocationArrow>
