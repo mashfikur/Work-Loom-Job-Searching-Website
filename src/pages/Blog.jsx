@@ -43,7 +43,7 @@ const Blog = () => {
         <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-2">
           {Array(3)
             .fill(0)
-            .map((idx) => (
+            .map((data, idx) => (
               <div className="rounded-xl h-[38rem] bg-base-200 p-4 " key={idx}>
                 <Skeleton
                   borderRadius={"10px"}
@@ -69,7 +69,7 @@ const Blog = () => {
       <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-5 ">
         {data &&
           data.map((blog) => (
-            <div key={blog.blog_id}>
+            <div key={blog._id}>
               <div className="card card-compactw-full h-[42rem] lg:h-[38rem] bg-base-100 shadow-xl">
                 <figure>
                   <img
@@ -100,41 +100,6 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-          ))}
-      </div>
-
-      {/* modals */}
-
-      <div className="w-screen">
-        {data &&
-          data.map((blog) => (
-            <dialog
-              key={blog.blog_id}
-              id={`Blog-${blog.blog_id}`}
-              className="modal banner-overlay "
-            >
-              <div className="modal-box ">
-                <form method="dialog">
-                  {/* closing button */}
-                  <button className="btn btn-sm btn-circle bg-error hover:bg-error absolute right-2 top-2">
-                    ✕
-                  </button>
-                </form>
-                <h3 className="font-bold my-6 text-3xl font-inter text-third drop-shadow-xl text-center ">
-                  {blog.blog_title}
-                </h3>
-
-                <div>
-                  <img
-                    className="w-full object-cover h-60 rounded-xl"
-                    src={blog.blog_img}
-                    alt=""
-                  />
-                </div>
-
-                <p className="py-4 font-inter  ">{blog.desc}</p>
-              </div>
-            </dialog>
           ))}
       </div>
     </div>

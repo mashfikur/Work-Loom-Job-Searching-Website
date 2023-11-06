@@ -54,7 +54,7 @@ const BlogDetails = () => {
           </div>
         </div>
         <div className="my-14 p-3 relative ">
-          <p className="font-semibold font-inter text-xl border-2 p-4 rounded-xl  ">
+          <p className="font-inter text-lg border-2 p-4 rounded-xl  ">
             {data?.desc}
           </p>
 

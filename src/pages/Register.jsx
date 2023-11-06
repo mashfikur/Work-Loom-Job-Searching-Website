@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { createUser, googleUserAuth, setLoading } = useAuthContext();
+  const { createUser, googleUserAuth, setLoading, setUser, user } =
+    useAuthContext();
   // const { handleGoogleAuth } = useGoogleAuth();
   const [showError, setShowError] = useState("");
   const navigate = useNavigate();
@@ -32,8 +33,6 @@ const Register = () => {
       return;
     }
 
-    // console.log(name, image, email, password);
-
     // creating user
     createUser(email, password)
       .then((result) => {
@@ -45,8 +44,8 @@ const Register = () => {
           photoURL: image,
         })
           .then(() => {
+            setUser({ ...user, photoURL: image, displayName: name });
             navigate("/");
-            window.location.reload();
           })
           .catch((error) => {
             toast.error(error.code);

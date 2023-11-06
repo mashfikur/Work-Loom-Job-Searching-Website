@@ -1,13 +1,17 @@
 import Marquee from "react-fast-marquee";
 import { useQuery } from "@tanstack/react-query";
 import EmployeeCard from "./EmployeeCard";
+import useAxios from "../../hooks/useAxios";
 
 const Employees = () => {
+  const axiosCustom = useAxios();
+
   const { data } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
-      const res = await fetch("/employees.json");
-      return res.json();
+      return axiosCustom.get("/api/v1/employees").then((res) => {
+        return res.data;
+      });
     },
   });
 
