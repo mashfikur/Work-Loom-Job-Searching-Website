@@ -15,7 +15,7 @@ const Navabr = () => {
       {user ? (
         <>
           <NavLink to={"/demo"}>Applied Jobs</NavLink>
-          <NavLink to={"/demo"}>Add A Job</NavLink>
+          <NavLink to={"/add-job"}>Add A Job</NavLink>
           <NavLink to={"/demo"}>My Jobs</NavLink>
         </>
       ) : (
@@ -39,7 +39,7 @@ const Navabr = () => {
     <div>
       <div className="border-b-[1px] border-[#E1DBE1]">
         <div className="navbar container py-5 mx-auto">
-          <div className="navbar-start">
+          <div className="navbar-start ">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
                 <svg
@@ -59,7 +59,7 @@ const Navabr = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content border-2 mt-3 z-50 p-4 shadow bg-base-100 rounded-box w-52 space-y-3 text-third font-bold"
+                className="menu menu-sm dropdown-content border-2 mt-3 z-50 p-4 shadow  rounded-box w-52 space-y-3 text-third font-bold"
               >
                 {navLinks}
               </ul>
@@ -78,8 +78,8 @@ const Navabr = () => {
               </div>
             </Link>
           </div>
-          <div className="navbar-end hidden lg:flex space-x-4">
-            <ul className="flex font-semibold items-center gap-6 px-1">
+          <div className="  navbar-end hidden lg:flex space-x-4">
+            <ul className="flex  font-semibold items-center gap-6 px-1">
               {navLinks}
             </ul>
 

@@ -3,6 +3,7 @@ import useAxios from "../hooks/useAxios";
 import { Link, useParams } from "react-router-dom";
 import { BsArrowLeft, BsArrowUp } from "react-icons/bs";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -23,6 +24,10 @@ const BlogDetails = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title> Work Loom | Blog Details </title>
+      </Helmet>
+
       <div className="my-12">
         <div className="my-4">
           <h3 className="text-5xl drop-shadow-xl text-center font-inter font-bold ">

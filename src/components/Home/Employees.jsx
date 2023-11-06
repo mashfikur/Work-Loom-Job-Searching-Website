@@ -40,20 +40,22 @@ const Employees = () => {
             {" who'"}ve realized their career aspirations with Work Loom
           </p>
         </div>
-        <div className="flex-1 hidden lg:block lg:overflow-hidden shadow-xl  rounded-xl border-2 border-[#36B09D] ">
-          <Marquee
-            className="bg-gradient-to-br p-4 from-[#5BFBBB] to-[#004472]"
-            direction="right"
-          >
-            {data &&
-              data.map((singleData) => (
-                <EmployeeCard
-                  key={singleData.id}
-                  employee={singleData}
-                ></EmployeeCard>
-              ))}
-          </Marquee>
-        </div>
+        {data && (
+          <div className="flex-1 hidden lg:block lg:overflow-hidden shadow-xl  rounded-xl border-2 border-[#36B09D] ">
+            <Marquee
+              className="bg-gradient-to-br p-4 from-[#5BFBBB] to-[#004472]"
+              direction="right"
+            >
+              {data &&
+                data.map((singleData) => (
+                  <EmployeeCard
+                    key={singleData.id}
+                    employee={singleData}
+                  ></EmployeeCard>
+                ))}
+            </Marquee>
+          </div>
+        )}
       </div>
 
       <div className="lg:hidden">
