@@ -12,7 +12,9 @@ const Navabr = () => {
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/demo"}>All Jobs</NavLink>
-      {user ? (
+      {loading ? (
+        <span className="loading loading-bars loading-lg"></span>
+      ) : user ? (
         <>
           <NavLink to={"/demo"}>Applied Jobs</NavLink>
           <NavLink to={"/add-job"}>Add A Job</NavLink>
@@ -59,7 +61,7 @@ const Navabr = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content border-2 mt-3 z-50 p-4 shadow  rounded-box w-52 space-y-3 text-third font-bold"
+                className="menu menu-sm dropdown-content border-2 mt-3 z-50 p-4 shadow  rounded-box w-52 space-y-3 bg-base-100 text-third font-bold"
               >
                 {navLinks}
               </ul>

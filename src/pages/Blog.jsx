@@ -13,7 +13,7 @@ import { useEffect } from "react";
 const Blog = () => {
   const axiosCustom = useAxios();
 
-  const { data, isPending } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
       return axiosCustom.get("/api/v1/blogs").then((res) => {
@@ -39,6 +39,18 @@ const Blog = () => {
         <hr className="border-2 drop-shadow-2xl border-third mx-auto w-28" />
       </div>
 
+      {/* error message */}
+      {isError && (
+        <div className="space-y-8">
+          <h3 className=" text-3xl md:text-5xl text-center font-inter font-bold text-red-500">
+            {"Can't Display Data Right Now"}
+          </h3>
+          <h3 className=" text-3xl md:text-5xl text-center font-inter font-bold text-red-500">
+            The Server responed with - {error.message}
+          </h3>
+        </div>
+      )}
+      {/* pedning animaition */}
       {isPending && (
         <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-3 p-2">
           {Array(3)

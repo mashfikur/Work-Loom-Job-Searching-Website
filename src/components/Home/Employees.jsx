@@ -16,7 +16,7 @@ const Employees = () => {
   });
 
   return (
-    <div className="container mx-auto my-12">
+    <div className="container mx-auto  min-h-[70vh] ">
       <div className="flex flex-col gap-4 p-4 xl:p-0 lg:flex-row items-center">
         <div className="flex-1 text-center lg:text-left ">
           <p className="text-4xl  lg:text-left my-3 font-inter font-bold text-gray-400">

@@ -3,6 +3,7 @@ import { BiMessageAltEdit } from "react-icons/bi";
 import { MdDateRange } from "react-icons/md";
 import { PiClockCountdownFill, PiHandbagSimpleFill } from "react-icons/pi";
 import { BiSolidDollarCircle } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
   const {
@@ -68,10 +69,12 @@ const JobCard = ({ job }) => {
             <p>{description}</p>
           </div>
           <div className="absolute scale-95 bottom-2 left-[30%] ">
-            <button className="btn bg-[#1687C9]  hover:bg-[#1687C9] rounded-full font-inter text-white ">
-              View Details
-              <PiHandbagSimpleFill className="text-xl"></PiHandbagSimpleFill>
-            </button>
+            <Link to={`/job/${_id}`}>
+              <button className="btn bg-[#1687C9]  hover:bg-[#1687C9] rounded-full font-inter text-white ">
+                View Details
+                <PiHandbagSimpleFill className="text-xl"></PiHandbagSimpleFill>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

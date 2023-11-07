@@ -13,8 +13,6 @@ import { useEffect } from "react";
 
 const AddJob = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [range, setRange] = useState(150);
-  const rangeRef = useRef();
   const formRef = useRef();
 
   const { user } = useAuthContext();
@@ -48,6 +46,7 @@ const AddJob = () => {
     const posted_date = now;
     const title = form.title.value;
     const company = form.company.value;
+    const company_logo = form.logo.value;
     const category = form.category.value;
     const banner = form.banner.value;
     const salary = form.salary.value;
@@ -61,6 +60,7 @@ const AddJob = () => {
       applied: 0,
       title,
       company,
+      company_logo,
       category,
       banner,
       salary,
@@ -82,7 +82,6 @@ const AddJob = () => {
       toast.success("Added Job Successfully");
       formRef?.current.reset();
       setStartDate(new Date());
-      setRange(150)
       mutation.reset();
     }
   }, [mutation, startDate]);
@@ -148,9 +147,25 @@ const AddJob = () => {
                       </div>
                     </div>
 
+                    {/* company logo */}
+                    <div className="form-control w-full">
+                      <label className="label">
+                        <span className="label-text text-base font-semibold">
+                          Comapany Logo
+                        </span>
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="logo URL"
+                        className="input input-bordered focus:outline-none py-5"
+                        required
+                        name="logo"
+                      />
+                    </div>
+
                     {/* second row */}
-                    <div className="flex items-center gap-4 justify-between">
-                      <div className="form-control flex-1">
+                    <div className="flex flex-col lg:flex-row items-center gap-4 justify-between">
+                      <div className="form-control w-full flex-1">
                         <label className="label">
                           <span className="label-text text-base font-semibold">
                             Job Title
@@ -164,7 +179,7 @@ const AddJob = () => {
                           name="title"
                         />
                       </div>
-                      <div className="form-control flex-1">
+                      <div className="form-control w-full flex-1">
                         <label className="label">
                           <span className="label-text text-base font-semibold">
                             Job Banner
@@ -182,26 +197,22 @@ const AddJob = () => {
 
                     {/* third row */}
                     <div className="flex flex-col lg:flex-row items-center gap-4 justify-between">
-                      <div className="form-control flex-1 ">
+                      <div className="form-control w-full flex-1">
                         <label className="label">
                           <span className="label-text text-base font-semibold">
                             Salary Range{" "}
-                            <span className="font-bold ">
-                              ( {` $${range}`} ) per month
-                            </span>{" "}
+                            <span className="font-inter font-bold">
+                              {" "}
+                              ($ per month){" "}
+                            </span>
                           </span>
                         </label>
                         <input
+                          type="number"
+                          placeholder="100 - 150"
+                          className="input input-bordered focus:outline-none py-5"
                           required
-                          onChange={() => setRange(rangeRef.current.value)}
                           name="salary"
-                          type="range"
-                          min={100}
-                          max={10000}
-                          ref={rangeRef}
-                          step={50}
-                          defaultValue={150}
-                          className="range range-success"
                         />
                       </div>
                       <div className="form-control flex-1 ">
@@ -215,6 +226,7 @@ const AddJob = () => {
                         </label>
                         <DatePicker
                           required
+                          minDate={new Date()}
                           name="deadline"
                           dateFormat={"dd-MM-yyyy"}
                           className=" border-2 p-3 rounded-xl w-full border-[#D2D4D7]"

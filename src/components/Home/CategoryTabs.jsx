@@ -11,7 +11,7 @@ const CategoryTabs = () => {
 
   const [jobCategory, setJobCategory] = useState(null);
 
-  const { data, isPending } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["jobs", jobCategory],
     queryFn: async () => {
       return axiosCustom
@@ -33,10 +33,10 @@ const CategoryTabs = () => {
         disableUpDownKeys={true}
         selectedTabClassName="active-tab"
       >
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center p-3 md:p-0 ">
           <TabList
             className={
-              "text-gray-400 text-xl font-inter shadow-xl border-2 px-6 py-3 rounded-xl"
+              "text-gray-400 flex flex-wrap items-center justify-center md:block md:text-xl font-inter shadow-xl border-2 px-6 py-3 rounded-xl"
             }
           >
             <Tab onClick={() => setJobCategory(null)}>All Jobs</Tab>
@@ -47,12 +47,22 @@ const CategoryTabs = () => {
           </TabList>
         </div>
 
-        <div className="my-12">
-          
+        <div className="my-12 p-3 ">
+          {isError && (
+            <div className="space-y-8">
+              <h3 className=" text-3xl md:text-5xl   text-center font-inter font-bold text-red-500">
+                {"Can't Display Data Right Now"}
+              </h3>
+              <h3 className="text-3xl md:text-5xl  text-center font-inter font-bold text-red-500">
+                The Server responed with - {error.message}
+              </h3>
+            </div>
+          )}
+
           {/* loading animation  */}
 
           {isPending && (
-            <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-4 p-2">
+            <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 p-2">
               {Array(4)
                 .fill(0)
                 .map((data, idx) => (
@@ -81,31 +91,31 @@ const CategoryTabs = () => {
           )}
 
           <TabPanel>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
               {data &&
                 data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
               {data &&
                 data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
               {data &&
                 data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
               {data &&
                 data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-4">
               {data &&
                 data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
             </div>
