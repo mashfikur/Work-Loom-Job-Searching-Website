@@ -7,7 +7,6 @@ const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuthContext();
   const location = useLocation();
   const path = location.pathname;
-  console.log(path.includes("/job"));
 
   if (loading) {
     return (
