@@ -6,8 +6,11 @@ import { BiSolidSelectMultiple } from "react-icons/bi";
 import { useEffect } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import useDateConvert from "../hooks/useDateConvert";
+import useAuthContext from "../hooks/useAuthContext";
+import toast from "react-hot-toast";
 
 const JobDetails = () => {
+  const { user } = useAuthContext();
   const dateConvert = useDateConvert();
   const axiosCustom = useAxios();
   const { id } = useParams();
@@ -35,9 +38,17 @@ const JobDetails = () => {
     const [dd, mm, yyyy] = deadline.split("-");
     const deadlineValue = dateConvert(dd, mm, yyyy);
 
-    console.log(deadlineValue > presentValue);
+    //checking user validation
+    if (user?.uid === data.user_id) {
+      toast.error("You can't apply for your own Job");
+      return;
+    }
 
-    //checking apply validation
+    // checking date validation
+    if (!(deadlineValue > presentValue)) {
+      toast.error("The Application Deadline is Over ! ");
+      return;
+    }
   };
 
   useEffect(() => {
