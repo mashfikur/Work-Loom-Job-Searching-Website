@@ -104,7 +104,11 @@ const JobDetails = () => {
             {/* company info */}
             <div className="flex  gap-3 my-5 items-center">
               <div>
-                <img className="w-12 " src={data.company_logo} alt="" />
+                <img
+                  className="w-12 "
+                  src={data.company_logo}
+                  alt="company_logo"
+                />
               </div>
               <div>
                 <h3 className="text-3xl  drop-shadow-xl font-bold">

@@ -27,7 +27,7 @@ const JobCard = ({ job }) => {
           <img
             className="w-full rounded-t-xl h-[18rem] object-cover"
             src={banner}
-            alt="Shoes"
+            alt="Job_Banner"
           />
         </figure>
         <div className="p-3 flex gap-2  flex-col">

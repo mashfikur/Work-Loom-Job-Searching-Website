@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 
@@ -8,6 +8,9 @@ const Login = () => {
   const { userSignIn, setLoading, setUser, googleUserAuth } = useAuthContext();
   // const { handleGoogleAuth } = useGoogleAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ const Login = () => {
     userSignIn(email, password)
       .then(() => {
         toast.success("Logged in Successfully");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(error.code);
@@ -32,7 +35,7 @@ const Login = () => {
     googleUserAuth()
       .then(() => {
         toast.success("Logged In Successfully");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(error.code);
