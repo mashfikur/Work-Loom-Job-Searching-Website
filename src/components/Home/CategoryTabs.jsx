@@ -4,13 +4,14 @@ import "react-tabs/style/react-tabs.css";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import JobCard from "../Category/JobCard";
+import Skeleton from "react-loading-skeleton";
 
 const CategoryTabs = () => {
   const axiosCustom = useAxios();
 
   const [jobCategory, setJobCategory] = useState(null);
 
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["jobs", jobCategory],
     queryFn: async () => {
       return axiosCustom
@@ -47,6 +48,38 @@ const CategoryTabs = () => {
         </div>
 
         <div className="my-12">
+          
+          {/* loading animation  */}
+
+          {isPending && (
+            <div className="grid gap-4 min-h-screen grid-cols-1 md:grid-cols-2  lg:grid-cols-4 p-2">
+              {Array(4)
+                .fill(0)
+                .map((data, idx) => (
+                  <div
+                    className="rounded-xl h-[38rem] bg-base-200 p-4 "
+                    key={idx}
+                  >
+                    <Skeleton
+                      borderRadius={"10px"}
+                      className=" h-[20rem] mb-4 shadow-xl"
+                    ></Skeleton>
+                    <Skeleton className="h-[3rem] mb-4"></Skeleton>
+
+                    <Skeleton className="h-[1rem]" count={3}></Skeleton>
+
+                    <div className="flex -mt-2 items-center justify-center">
+                      <Skeleton
+                        borderRadius={"25px"}
+                        width={"130px"}
+                        className="mt-16 h-10"
+                      ></Skeleton>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          )}
+
           <TabPanel>
             <div className="grid grid-cols-4 gap-4">
               {data &&
