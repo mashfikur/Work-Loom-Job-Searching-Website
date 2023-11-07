@@ -11,6 +11,8 @@ import JobDetails from "../pages/JobDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyJobs from "../pages/MyJobs";
 import AppliedJobs from "../pages/AppliedJobs";
+import UpdateJob from "../pages/UpdateJob";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -40,19 +42,52 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-job",
-        element: <PrivateRoute><AddJob></AddJob></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/job/:id",
-        element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <JobDetails></JobDetails>
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/my-jobs",
-        element:<PrivateRoute><MyJobs></MyJobs></PrivateRoute>
+        path: "/my-jobs",
+        element: (
+          <PrivateRoute>
+            <MyJobs></MyJobs>
+          </PrivateRoute>
+        ),
       },
       {
-        path:"/applied-jobs",
-        element:<PrivateRoute><AppliedJobs></AppliedJobs> </PrivateRoute>
+        path: "/applied-jobs",
+        element: (
+          <PrivateRoute>
+            <AppliedJobs></AppliedJobs>{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateJob></UpdateJob>
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => {
+          return axios
+            .get(
+              `http://localhost:5000/api/v1/all-jobs/job/details/${params.id}`
+            )
+            .then((res) => {
+              return res.data;
+            });
+        },
       },
     ],
   },

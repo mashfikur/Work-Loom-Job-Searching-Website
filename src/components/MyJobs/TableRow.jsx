@@ -12,12 +12,14 @@ const TableRow = ({ job, number }) => {
       <td className="font-inter text-xl ">
         <Link to={`/job/${job._id}`}>{job.title}</Link>{" "}
       </td>
-      <td></td>
+      <td className="font-inter text-lg "> {job.category.toUpperCase()} </td>
       <td className=" flex items-center justify-end">
         <div className="flex gap-4">
-          <button className="btn shadow-xl capitalize rounded-full btn-warning">
-            update <BiEdit className="text-xl"></BiEdit>{" "}
-          </button>
+          <Link to={`/update/${job._id}`}>
+            <button className="btn shadow-xl capitalize rounded-full btn-warning">
+              update <BiEdit className="text-xl"></BiEdit>{" "}
+            </button>
+          </Link>
           <button className="btn rounded-full text-white border-none bg-red-500 hover:bg-red-500 shadow-xl ">
             delete <AiFillDelete className="text-xl"></AiFillDelete>{" "}
           </button>

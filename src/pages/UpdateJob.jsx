@@ -1,22 +1,30 @@
-import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
+import useAuthContext from "../hooks/useAuthContext";
+import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
+import useDateConvert from "../hooks/useDateConvert";
 
-import "react-datepicker/dist/react-datepicker.css";
-import { useRef } from "react";
-import useAuthContext from "../hooks/useAuthContext";
-import useAxios from "../hooks/useAxios";
-import { useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { useEffect } from "react";
-
-const AddJob = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const UpdateJob = () => {
   const formRef = useRef();
-
+  const data = useLoaderData();
   const { user } = useAuthContext();
   const axiosCustom = useAxios();
+  //eslint-disable-next-line
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const dateConvert = useDateConvert();
+
+  const [dd, mm, yyyy] = data.deadline.split("-");
+  const newMonth = parseInt(mm) - 1;
+  const updatedMonth = newMonth.toString();
+  const converted = dateConvert(dd, updatedMonth, yyyy);
+  const [startDate, setStartDate] = useState(new Date(converted));
 
   const opitons = [
     { value: "onsite", label: "On Site" },
@@ -27,8 +35,12 @@ const AddJob = () => {
 
   // using tanstack query mutations
   const mutation = useMutation({
-    mutationFn: (jobInfo) => {
-      return axiosCustom.post("/api/v1/user/add-job", jobInfo);
+    mutationFn: async (jobInfo) => {
+      return axiosCustom
+        .patch(`/api/v1/user/update-job/${id}`, jobInfo)
+        .then((res) => {
+          return res.data;
+        });
     },
   });
 
@@ -57,7 +69,6 @@ const AddJob = () => {
       user_id,
       posted_by,
       posted_date,
-      applied: 0,
       title,
       company,
       company_logo,
@@ -79,31 +90,30 @@ const AddJob = () => {
     }
 
     if (mutation.isSuccess) {
-      toast.success("Added Job Successfully");
-      formRef?.current.reset();
-      setStartDate(new Date());
+      toast.success("Updated Job Successfully");
       mutation.reset();
+      navigate(-1);
     }
-  }, [mutation, startDate]);
+  }, [mutation, startDate, navigate]);
 
   return (
     <div>
       {/* website title and meta content */}
       <Helmet>
-        <title> Work Loom | Add Job </title>
+        <title> Work Loom | Update Job </title>
       </Helmet>
 
       <div className="flex  flex-col items-center lg:flex-row">
         <div className="flex-1">
           <img
             className="w-[70%] mx-auto lg:w-full"
-            src="https://i.ibb.co/xjJ2C6b/undraw-Note-list-re-r4u9.png"
+            src="https://i.ibb.co/9bVS5Zk/undraw-Content-re-33px.png"
             alt=""
           />
         </div>
         <div className="flex-1">
           <h3 className="lg:text-6xl text-5xl mt-5  text-center font-bold font-inter">
-            Add A Job
+            Update Job
           </h3>
 
           {/* job form  */}
@@ -125,6 +135,7 @@ const AddJob = () => {
                           </span>
                         </label>
                         <input
+                          defaultValue={data?.company}
                           type="text"
                           placeholder="Company"
                           className="input input-bordered focus:outline-none"
@@ -140,6 +151,9 @@ const AddJob = () => {
                           </span>
                         </label>
                         <Select
+                          placeholder={`${data?.category.toUpperCase()}`}
+                          className="placeholder:text-black"
+                          defaultMenuIsOpen={true}
                           required
                           name="category"
                           options={opitons}
@@ -155,6 +169,7 @@ const AddJob = () => {
                         </span>
                       </label>
                       <input
+                        defaultValue={data?.company_logo}
                         type="text"
                         placeholder="logo URL"
                         className="input input-bordered focus:outline-none py-5"
@@ -172,6 +187,7 @@ const AddJob = () => {
                           </span>
                         </label>
                         <input
+                          defaultValue={data?.title}
                           type="text"
                           placeholder="Title"
                           className="input input-bordered focus:outline-none py-5"
@@ -186,6 +202,7 @@ const AddJob = () => {
                           </span>
                         </label>
                         <input
+                          defaultValue={data?.banner}
                           type="text"
                           placeholder="Banner URL"
                           className="input input-bordered focus:outline-none py-5"
@@ -208,6 +225,7 @@ const AddJob = () => {
                           </span>
                         </label>
                         <input
+                          defaultValue={data?.salary}
                           type="text"
                           placeholder="100 - 150"
                           className="input input-bordered focus:outline-none py-5"
@@ -226,7 +244,6 @@ const AddJob = () => {
                         </label>
                         <DatePicker
                           required
-                          minDate={new Date()}
                           name="deadline"
                           dateFormat={"dd-MM-yyyy"}
                           className=" border-2 p-3 rounded-xl w-full border-[#D2D4D7]"
@@ -244,6 +261,7 @@ const AddJob = () => {
                         </span>
                       </label>
                       <textarea
+                        defaultValue={data?.description}
                         placeholder="Job Description"
                         className="input resize-none py-5 input-bordered h-40  focus:outline-none"
                         required
@@ -259,7 +277,7 @@ const AddJob = () => {
                             : "bg-[#1687C9] hover:bg-[#1687C9]  "
                         } `}
                       >
-                        {mutation.isPending ? "Addding.." : "Add Job"}
+                        {mutation.isPending ? "Updating.." : "Update Job"}
                       </button>
                     </div>
                   </form>
@@ -273,4 +291,4 @@ const AddJob = () => {
   );
 };
 
-export default AddJob;
+export default UpdateJob;

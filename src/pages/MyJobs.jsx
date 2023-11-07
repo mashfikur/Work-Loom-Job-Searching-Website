@@ -27,7 +27,7 @@ const MyJobs = () => {
 
       <div className="container mx-auto">
         <div className="my-5">
-          <h3 className="font-inter underline font-bold text-4xl text-center">
+          <h3 className="font-inter bg-clip-text text-transparent bg-gradient-to-r from-green-300 drop-shadow-xl via-blue-500 to-purple-600 font-bold text-4xl lg:text-5xl text-center">
             {" "}
             Your Posted Jobs{" "}
           </h3>
@@ -60,11 +60,11 @@ const MyJobs = () => {
                       <th></th>
                       <th className="text-base">Company Name</th>
                       <th className="text-base">Job Title </th>
-                      <th></th>
+                      <th className="text-base">Job Category</th>
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody className="  ">
+                  <tbody className=" lg:border-4 lg:border-[#62BBCF]  hover:border-transparent  ">
                     {/* dynamic tables */}
 
                     {data.map((job, idx) => (

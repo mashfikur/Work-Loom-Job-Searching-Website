@@ -129,6 +129,13 @@ const JobDetails = () => {
               </h3>
               <h3>
                 {" "}
+                Job Type :{" "}
+                <span className="font-normal text-black ">
+                  {data.category.toUpperCase()}
+                </span>{" "}
+              </h3>
+              <h3>
+                {" "}
                 Salary range :{" "}
                 <span className="font-normal text-black">
                   {" "}
