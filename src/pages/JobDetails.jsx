@@ -3,7 +3,7 @@ import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { BiSolidSelectMultiple } from "react-icons/bi";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 import useDateConvert from "../hooks/useDateConvert";
 import useAuthContext from "../hooks/useAuthContext";
@@ -14,9 +14,11 @@ const JobDetails = () => {
   const dateConvert = useDateConvert();
   const axiosCustom = useAxios();
   const { id } = useParams();
+  const submitRef = useRef();
+  const [applied, setApplied] = useState(false);
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["singleJob", id],
+    queryKey: ["singleJob", id, applied],
     queryFn: async () => {
       return axiosCustom
         .get(`/api/v1/all-jobs/job/details/${id}`)
@@ -49,11 +51,28 @@ const JobDetails = () => {
       toast.error("The Application Deadline is Over ! ");
       return;
     }
+
+    document.getElementById("modal_input").showModal();
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleSubmit = () => {
+    const resume = submitRef.current.value;
+    if (resume) {
+      console.log(resume);
+
+      axiosCustom.post(`/api/v1/user/apply-job/${id}`).then(() => {
+        setApplied(!applied);
+        submitRef.current.value = "";
+        toast.success("Successfully applied for the job");
+      });
+    } else {
+      toast.error("Submit Your Resume to Apply");
+    }
+  };
 
   return (
     <div className="container mx-auto">
@@ -186,6 +205,83 @@ const JobDetails = () => {
           </div>
         </div>
       )}
+
+      {/* modal dialouge input */}
+
+      <dialog id="modal_input" className="modal">
+        <div className="modal-box w-11/12 max-w-xl">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-error absolute right-2 top-2">
+              ✕
+            </button>
+            <p className="font-inter text-2xl text-center font-bold">
+              Apply Job
+            </p>
+            <div>
+              <div className="space-y-4 mt-4">
+                <div className=" w-full flex  items-center ">
+                  <div className="w-[20%]">
+                    <span className="text-base md:text-lg font-inter">
+                      Name:{" "}
+                    </span>
+                  </div>
+                  <div className="w-[80%]">
+                    <input
+                      defaultValue={user?.displayName}
+                      type="text"
+                      placeholder="email"
+                      className="input  input-bordered rounded-full w-full"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className=" w-full flex  items-center ">
+                  <div className="w-[20%]">
+                    <span className="text-base md:text-lg font-inter">
+                      Email:{" "}
+                    </span>
+                  </div>
+                  <div className="w-[80%]">
+                    <input
+                      defaultValue={user?.email}
+                      type="email"
+                      placeholder="email"
+                      className="input  input-bordered rounded-full w-full"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className=" w-full flex  items-center ">
+                  <div className="w-[30%] md:w-[20%]">
+                    <span className="text-base md:text-lg font-inter">
+                      Resume:{" "}
+                    </span>
+                  </div>
+                  <div className="w-[80%]">
+                    <input
+                      ref={submitRef}
+                      name="resume"
+                      type="text"
+                      placeholder="Resume Link"
+                      className="input  input-bordered rounded-full w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center">
+                  <button
+                    onClick={handleSubmit}
+                    className="btn bg-third hover:bg-third rounded-full text-white font-inter shadow-xl border-none"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </dialog>
     </div>
   );
 };

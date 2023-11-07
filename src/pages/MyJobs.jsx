@@ -13,7 +13,7 @@ const MyJobs = () => {
   const id = user?.uid;
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["posted-jobs", id,deleted],
+    queryKey: ["posted-jobs", id, deleted],
     queryFn: async () => {
       return axiosCustom.get(`/api/v1/user/posted-jobs/${id}`).then((res) => {
         return res.data;
@@ -39,7 +39,8 @@ const MyJobs = () => {
           {isPending && (
             <div className=" mt-40 lg:mt-60 ">
               <h3 className="font-inter text-center text-3xl lg:text-6xl text-gray-400 font-bold">
-                Loading Data ....{" "}
+                Loading Data{" "}
+                <span className="loading loading-bars loading-lg"></span>
               </h3>
             </div>
           )}
@@ -47,7 +48,7 @@ const MyJobs = () => {
           {isError && (
             <div className=" mt-40 lg:mt-60 ">
               <h3 className="font-inter text-center text-3xl lg:text-6xl text-red-500 font-bold">
-                Could Not Fetch Data ! Error &#8594; ${error.message}{" "}
+                Could Not Fetch Data ,{error.message}!
               </h3>
             </div>
           )}
@@ -70,7 +71,13 @@ const MyJobs = () => {
                     {/* dynamic tables */}
 
                     {data.map((job, idx) => (
-                      <TableRow setDeleted={setDeleted} deleted={deleted} key={idx} number={idx} job={job}></TableRow>
+                      <TableRow
+                        setDeleted={setDeleted}
+                        deleted={deleted}
+                        key={idx}
+                        number={idx}
+                        job={job}
+                      ></TableRow>
                     ))}
                   </tbody>
                 </table>

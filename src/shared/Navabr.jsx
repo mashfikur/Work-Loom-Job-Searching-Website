@@ -13,7 +13,7 @@ const Navabr = () => {
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/all-jobs"}>All Jobs</NavLink>
       {loading ? (
-        <span className="loading loading-bars loading-lg"></span>
+        <span className="loading loading-spinner loading-lg"></span>
       ) : user ? (
         <>
           <NavLink to={"/applied-jobs"}>Applied Jobs</NavLink>

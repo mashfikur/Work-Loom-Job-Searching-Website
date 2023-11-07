@@ -3,18 +3,16 @@ import { BiMessageAltEdit } from "react-icons/bi";
 import { MdDateRange } from "react-icons/md";
 import { PiClockCountdownFill, PiHandbagSimpleFill } from "react-icons/pi";
 import { BiSolidDollarCircle } from "react-icons/bi";
+import { FaUserGroup } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
   const {
     _id,
-    user_id,
     posted_by,
     posted_date,
     applied,
     title,
-    company,
-    category,
     banner,
     salary,
     deadline,
@@ -22,7 +20,7 @@ const JobCard = ({ job }) => {
   } = job;
   return (
     <div>
-      <div className=" h-[38rem] rounded-xl font-inter relative  bg-base-100 shadow-xl">
+      <div className=" h-[40rem]  rounded-xl font-inter relative  bg-base-100 shadow-xl">
         <figure>
           <img
             className="w-full rounded-t-xl h-[18rem] object-cover"
@@ -63,6 +61,13 @@ const JobCard = ({ job }) => {
               </span>
               ${salary}
               <span className="text-sm">/Month</span>
+            </p>
+            <p className="flex items-center gap-2 text-lg">
+              <FaUserGroup></FaUserGroup>
+              <span className="font-bold text-gray-400 text-base">
+                Applied:
+              </span>
+              {applied}
             </p>
           </div>
           <div className=" text-center text-lg font-normal">
