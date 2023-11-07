@@ -44,7 +44,12 @@ const Register = () => {
           photoURL: image,
         })
           .then(() => {
-            setUser({ ...user, photoURL: image, displayName: name });
+            setUser({
+              ...user,
+              photoURL: image,
+              displayName: name,
+              email: email,
+            });
             navigate("/");
           })
           .catch((error) => {

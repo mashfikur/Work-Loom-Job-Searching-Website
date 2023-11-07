@@ -81,9 +81,11 @@ const AddJob = () => {
     if (mutation.isSuccess) {
       toast.success("Added Job Successfully");
       formRef?.current.reset();
+      setStartDate(new Date());
+      setRange(150)
       mutation.reset();
     }
-  }, [mutation]);
+  }, [mutation, startDate]);
 
   return (
     <div>

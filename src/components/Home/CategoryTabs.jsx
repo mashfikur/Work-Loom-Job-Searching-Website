@@ -1,36 +1,81 @@
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import useAxios from "../../hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
+import JobCard from "../Category/JobCard";
 
 const CategoryTabs = () => {
-  const [activeTab, setActiveTab] = useState("");
+  const axiosCustom = useAxios();
+
+  const [jobCategory, setJobCategory] = useState(null);
+
+  const { data } = useQuery({
+    queryKey: ["jobs", jobCategory],
+    queryFn: async () => {
+      return axiosCustom
+        .get(
+          `/api/v1/${
+            jobCategory ? `all-jobs/category/${jobCategory}` : `all-jobs`
+          }`
+        )
+        .then((res) => {
+          return res.data;
+        });
+    },
+  });
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="min-h-screen">
       <Tabs
-        className={"text-xl font-inter "}
+        className={" "}
         disableUpDownKeys={true}
         selectedTabClassName="active-tab"
       >
-        <TabList className={"text-gray-400 shadow-xl border-2 px-6 py-3 rounded-xl"} >
-          <Tab>On Site</Tab>
-          <Tab>Remote</Tab>
-          <Tab>Hybrid</Tab>
-          <Tab>Part Time</Tab>
-        </TabList>
+        <div className="flex items-center justify-center">
+          <TabList
+            className={
+              "text-gray-400 text-xl font-inter shadow-xl border-2 px-6 py-3 rounded-xl"
+            }
+          >
+            <Tab onClick={() => setJobCategory(null)}>All Jobs</Tab>
+            <Tab onClick={() => setJobCategory("onsite")}>On Site</Tab>
+            <Tab onClick={() => setJobCategory("remote")}>Remote</Tab>
+            <Tab onClick={() => setJobCategory("hybrid")}>Hybrid</Tab>
+            <Tab onClick={() => setJobCategory("partTime")}>Part Time</Tab>
+          </TabList>
+        </div>
 
         <div className="my-12">
           <TabPanel>
-            <h2>Any content 1</h2>
+            <div className="grid grid-cols-4 gap-4">
+              {data &&
+                data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <div className="grid grid-cols-4 gap-4">
+              {data &&
+                data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 3</h2>
+            <div className="grid grid-cols-4 gap-4">
+              {data &&
+                data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 4</h2>
+            <div className="grid grid-cols-4 gap-4">
+              {data &&
+                data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="grid grid-cols-4 gap-4">
+              {data &&
+                data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+            </div>
           </TabPanel>
         </div>
       </Tabs>
