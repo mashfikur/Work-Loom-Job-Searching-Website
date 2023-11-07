@@ -11,7 +11,7 @@ const Navabr = () => {
   const navLinks = (
     <>
       <NavLink to={"/"}>Home</NavLink>
-      <NavLink to={"/demo"}>All Jobs</NavLink>
+      <NavLink to={"/all-jobs"}>All Jobs</NavLink>
       {loading ? (
         <span className="loading loading-bars loading-lg"></span>
       ) : user ? (

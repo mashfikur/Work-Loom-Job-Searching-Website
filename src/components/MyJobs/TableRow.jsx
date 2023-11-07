@@ -20,7 +20,7 @@ const TableRow = ({ job, number, setDeleted, deleted }) => {
 
   const handleDelete = () => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "Do You Want to Delete it?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,

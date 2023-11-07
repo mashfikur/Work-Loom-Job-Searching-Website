@@ -13,6 +13,7 @@ import MyJobs from "../pages/MyJobs";
 import AppliedJobs from "../pages/AppliedJobs";
 import UpdateJob from "../pages/UpdateJob";
 import axios from "axios";
+import AllJobs from "../pages/AllJobs";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
               return res.data;
             });
         },
+      },
+      {
+        path: "/all-jobs",
+        element: <AllJobs></AllJobs>,
       },
     ],
   },
