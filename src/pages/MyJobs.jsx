@@ -3,15 +3,17 @@ import useAxios from "../hooks/useAxios";
 import useAuthContext from "../hooks/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import TableRow from "../components/MyJobs/TableRow";
+import { useState } from "react";
 
 const MyJobs = () => {
   const { user } = useAuthContext();
   const axiosCustom = useAxios();
+  const [deleted, setDeleted] = useState(false);
 
   const id = user?.uid;
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ["posted-jobs", id],
+    queryKey: ["posted-jobs", id,deleted],
     queryFn: async () => {
       return axiosCustom.get(`/api/v1/user/posted-jobs/${id}`).then((res) => {
         return res.data;
@@ -68,7 +70,7 @@ const MyJobs = () => {
                     {/* dynamic tables */}
 
                     {data.map((job, idx) => (
-                      <TableRow key={idx} number={idx} job={job}></TableRow>
+                      <TableRow setDeleted={setDeleted} deleted={deleted} key={idx} number={idx} job={job}></TableRow>
                     ))}
                   </tbody>
                 </table>
