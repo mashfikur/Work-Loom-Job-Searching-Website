@@ -83,7 +83,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           return axios
             .get(
-              `http://localhost:5000/api/v1/all-jobs/job/details/${params.id}`
+              `https://work-loom-server.vercel.app/api/v1/all-jobs/job/details/${params.id}`
             )
             .then((res) => {
               return res.data;

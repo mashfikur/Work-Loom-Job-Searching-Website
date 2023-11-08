@@ -34,9 +34,10 @@ const Navabr = () => {
       .then(() => {
         toast.success("Logged Out Successfully");
         // removing cookie
-        axiosCustom
-          .get("/api/v1/auth/remove-token")
-          .then((res) => console.log(res.data));
+        axiosCustom.get("/api/v1/auth/remove-token").then((res) => {
+          window.location.reload();
+          console.log(res.data);
+        });
       })
       .catch((error) => {
         toast.error(error.code);

@@ -38,46 +38,6 @@ const Banner = () => {
               />{" "}
             </div>
           </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              {" "}
-              <img
-                className="md:max-h-[70vh] h-[70vh] w-full object-cover"
-                src="https://i.ibb.co/ngdKXt7/banner-cover-4.jpg"
-                alt=""
-              />{" "}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              {" "}
-              <img
-                className="md:max-h-[70vh] h-[70vh] w-full object-cover"
-                src="https://i.ibb.co/Nxdf9FJ/banner-cover-3.jpg"
-                alt=""
-              />{" "}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              {" "}
-              <img
-                className="md:max-h-[70vh] h-[70vh] w-full object-cover"
-                src="https://i.ibb.co/GcXMMqS/banner-cover-1.jpg"
-                alt=""
-              />{" "}
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              {" "}
-              <img
-                className="md:max-h-[70vh] h-[70vh] w-full object-cover"
-                src="https://i.ibb.co/kqwK8fh/banner-cover-2.jpg"
-                alt=""
-              />{" "}
-            </div>
-          </SwiperSlide>
         </Swiper>
         <div className="absolute top-0 left-0 z-10 w-full h-full flex flex-col items-center xl:pt-10 xl:gap-10 banner-overlay">
           {/* banner logo part */}

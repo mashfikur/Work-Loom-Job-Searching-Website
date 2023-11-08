@@ -8,7 +8,6 @@ import useAxios from "../hooks/useAxios";
 const Login = () => {
   const { userSignIn, setLoading, setUser, googleUserAuth } = useAuthContext();
   const axiosCustom = useAxios();
-  // const { handleGoogleAuth } = useGoogleAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
