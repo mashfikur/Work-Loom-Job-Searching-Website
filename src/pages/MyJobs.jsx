@@ -85,7 +85,7 @@ const MyJobs = () => {
             ) : (
               <div className=" mt-40 lg:mt-60 ">
                 <h3 className="font-inter text-center text-3xl lg:text-6xl text-gray-400 font-bold">
-                  You have not posted any job yet{" "}
+                  You {"Haven't"} posted any job yet{" "}
                 </h3>
               </div>
             )

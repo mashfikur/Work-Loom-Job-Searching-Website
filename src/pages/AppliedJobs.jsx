@@ -8,12 +8,14 @@ import JobCard from "../components/Category/JobCard";
 
 const AppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
+  const [jobsLoading, setJobsLoading] = useState(true);
   const { user } = useAuthContext();
   const id = user?.uid;
 
   const axiosCustom = useAxios();
 
   const opitons = [
+    { value: "all-job", label: "All Job" },
     { value: "onsite", label: "On Site" },
     { value: "remote", label: "Remote" },
     { value: "hybrid", label: "Hybrid" },
@@ -25,6 +27,7 @@ const AppliedJobs = () => {
     queryFn: async () => {
       return axiosCustom.get(`/api/v1/user/applied-jobs/${id}`).then((res) => {
         setAppliedJobs(res.data);
+        setJobsLoading(false);
         return res.data;
       });
     },
@@ -33,7 +36,12 @@ const AppliedJobs = () => {
   const handleChange = (e) => {
     const category = e.value;
 
-    const filtered = appliedJobs.filter((job) => job.category === category);
+    if (category === "all-job") {
+      setAppliedJobs(data);
+      return;
+    }
+
+    const filtered = data.filter((job) => job.category === category);
 
     if (filtered) {
       setAppliedJobs(filtered);
@@ -86,13 +94,27 @@ const AppliedJobs = () => {
             </div>
           )}
 
-          {data && (
-            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 p-4 xl:p-0 gap-3">
-              {appliedJobs.map((job, idx) => (
-                <JobCard key={idx} job={job}></JobCard>
-              ))}
-            </div>
-          )}
+          {data &&
+            (jobsLoading ? (
+              <div className=" mt-40 lg:mt-60 ">
+                <h3 className="font-inter text-center text-3xl lg:text-6xl text-gray-400 font-bold">
+                  Loading Jobs{" "}
+                  <span className="loading loading-bars loading-lg"></span>
+                </h3>
+              </div>
+            ) : appliedJobs.length ? (
+              <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 p-4 xl:p-0 gap-3">
+                {appliedJobs.map((job, idx) => (
+                  <JobCard key={idx} job={job}></JobCard>
+                ))}
+              </div>
+            ) : (
+              <div className=" mt-40 lg:mt-60 ">
+                <h3 className="font-inter text-center text-3xl lg:text-6xl text-gray-400 font-bold">
+                  No Job Found{" "}
+                </h3>
+              </div>
+            ))}
         </div>
       </div>
     </div>
@@ -100,3 +122,9 @@ const AppliedJobs = () => {
 };
 
 export default AppliedJobs;
+
+<div className=" mt-40 lg:mt-60 ">
+  <h3 className="font-inter text-center text-3xl lg:text-6xl text-gray-400 font-bold">
+    You {"Haven't"} Applied for any job yet{" "}
+  </h3>
+</div>;
