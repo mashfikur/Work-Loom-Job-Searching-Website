@@ -122,6 +122,7 @@ const Navabr = () => {
                     <div className=" ">
                       <img
                         className="w-10 h-10 object-cover rounded-full"
+                        alt="user-img"
                         src={
                           user?.photoURL
                             ? user.photoURL
@@ -173,6 +174,7 @@ const Navabr = () => {
                   >
                     <div className="w-10 rounded-full border-main ">
                       <img
+                        alt="user-img"
                         src={
                           user?.photoURL
                             ? user.photoURL

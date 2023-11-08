@@ -5,6 +5,8 @@ import useAuthContext from "../hooks/useAuthContext";
 import { useState } from "react";
 import Select from "react-select";
 import JobCard from "../components/Category/JobCard";
+import { BsFillCloudDownloadFill } from "react-icons/bs";
+import { Margin, usePDF } from "react-to-pdf";
 
 const AppliedJobs = () => {
   const [appliedJobs, setAppliedJobs] = useState([]);
@@ -13,6 +15,12 @@ const AppliedJobs = () => {
   const id = user?.uid;
 
   const axiosCustom = useAxios();
+
+  // pdf processing
+  const { toPDF, targetRef } = usePDF({
+    filename: "summary.pdf",
+    page: { margin: Margin.SMALL },
+  });
 
   const opitons = [
     { value: "all-job", label: "All Job" },
@@ -56,7 +64,7 @@ const AppliedJobs = () => {
         <title> Work Loom | Applied Jobs </title>
       </Helmet>
 
-      <div className="container mx-auto my-16">
+      <div ref={targetRef} className="container mx-auto my-16  ">
         {/* heading part */}
         <div className="flex flex-col lg:px-4 xl:px-0  gap-4 lg:flex-row items-center">
           <div className="flex-1">
@@ -103,10 +111,27 @@ const AppliedJobs = () => {
                 </h3>
               </div>
             ) : appliedJobs.length ? (
-              <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 p-4 xl:p-0 gap-3">
-                {appliedJobs.map((job, idx) => (
-                  <JobCard key={idx} job={job}></JobCard>
-                ))}
+              <div>
+                <div className="font-bold hidden">
+                  <h3>hello</h3>
+                  <h3>hello</h3>
+                  <h3>hello</h3>
+                </div>
+                <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 p-4 xl:p-0 gap-3">
+                  {appliedJobs.map((job, idx) => (
+                    <JobCard key={idx} job={job}></JobCard>
+                  ))}
+                </div>
+
+                <div className="my-10 sticky bottom-2 flex items-center justify-center">
+                  <button
+                    onClick={toPDF}
+                    className="btn shadow-xl btn-success font-bold font-inter text-lg rounded-full  capitalize"
+                  >
+                    Download Summary
+                    <BsFillCloudDownloadFill className="text-xl"></BsFillCloudDownloadFill>
+                  </button>
+                </div>
               </div>
             ) : (
               <div className=" mt-40 lg:mt-60 ">
@@ -122,9 +147,3 @@ const AppliedJobs = () => {
 };
 
 export default AppliedJobs;
-
-<div className=" mt-40 lg:mt-60 ">
-  <h3 className="font-inter text-center text-3xl lg:text-6xl text-gray-400 font-bold">
-    You {"Haven't"} Applied for any job yet{" "}
-  </h3>
-</div>;
