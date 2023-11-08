@@ -35,7 +35,6 @@ const Navabr = () => {
         toast.success("Logged Out Successfully");
         // removing cookie
         axiosCustom.get("/api/v1/auth/remove-token").then((res) => {
-          window.location.reload();
           console.log(res.data);
         });
       })
