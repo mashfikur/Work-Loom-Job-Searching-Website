@@ -243,6 +243,7 @@ const UpdateJob = () => {
                           </span>
                         </label>
                         <DatePicker
+                          minDate={new Date()}
                           required
                           name="deadline"
                           dateFormat={"dd-MM-yyyy"}

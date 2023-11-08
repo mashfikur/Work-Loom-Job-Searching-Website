@@ -64,11 +64,19 @@ const JobDetails = () => {
     if (resume) {
       console.log(resume);
 
-      axiosCustom.post(`/api/v1/user/apply-job/${id}`).then(() => {
-        setApplied(!applied);
-        submitRef.current.value = "";
-        toast.success("Successfully applied for the job");
-      });
+      const appliedJobInfo = {
+        user_id: user.uid,
+        job_id: id,
+        resume,
+      };
+
+      axiosCustom
+        .post(`/api/v1/user/apply-job/${id}`, appliedJobInfo)
+        .then(() => {
+          setApplied(!applied);
+          submitRef.current.value = "";
+          toast.success("Successfully applied for the job");
+        });
     } else {
       toast.error("Submit Your Resume to Apply");
     }
