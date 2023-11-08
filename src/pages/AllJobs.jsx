@@ -3,6 +3,7 @@ import useAxios from "../hooks/useAxios";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { Helmet } from "react-helmet-async";
 
 const AllJobs = () => {
   const axiosCustom = useAxios();
@@ -40,6 +41,10 @@ const AllJobs = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title> Work Loom | All Jobs </title>
+      </Helmet>
+
       <div className="flex items-center justify-center">
         <h3 className="text-5xl bg-clip-text text-transparent bg-gradient-to-br from-[#5BFBBB] to-[#004472] font-inter  font-bold  px-4 py-2 rounded-lg text-center my-4 mb-8">
           {" "}

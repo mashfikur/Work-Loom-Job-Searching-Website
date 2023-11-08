@@ -6,11 +6,12 @@ import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
+import useAxios from "../hooks/useAxios";
 
 const Register = () => {
   const { createUser, googleUserAuth, setLoading, setUser, user } =
     useAuthContext();
-  // const { handleGoogleAuth } = useGoogleAuth();
+  const axiosCustom = useAxios();
   const [showError, setShowError] = useState("");
   const navigate = useNavigate();
 
@@ -50,7 +51,16 @@ const Register = () => {
               displayName: name,
               email: email,
             });
-            navigate("/");
+
+            // generating token
+            const uid = result.user.uid;
+            const user_info = { uid };
+            axiosCustom
+              .post("/api/v1/auth/create-token", user_info)
+              .then((res) => {
+                console.log(res.data);
+                navigate("/");
+              });
           })
           .catch((error) => {
             toast.error(error.code);
@@ -63,9 +73,15 @@ const Register = () => {
 
   const handleGoogleAuth = () => {
     googleUserAuth()
-      .then(() => {
+      .then((result) => {
         toast.success("Created Account Successfully");
-        navigate("/");
+        // genreating token
+        const uid = result.user.uid;
+        const user_info = { uid };
+        axiosCustom.post("/api/v1/auth/create-token", user_info).then((res) => {
+          console.log(res.data);
+          navigate("/");
+        });
       })
       .catch((error) => {
         toast.error(error.code);

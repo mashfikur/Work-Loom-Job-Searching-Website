@@ -4,9 +4,11 @@ import useAuthContext from "../hooks/useAuthContext";
 import { MdAccountCircle } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import toast from "react-hot-toast";
+import useAxios from "../hooks/useAxios";
 
 const Navabr = () => {
   const { user, userSignOut, loading } = useAuthContext();
+  const axiosCustom = useAxios();
 
   const navLinks = (
     <>
@@ -31,6 +33,10 @@ const Navabr = () => {
     userSignOut()
       .then(() => {
         toast.success("Logged Out Successfully");
+        // removing cookie
+        axiosCustom
+          .get("/api/v1/auth/remove-token")
+          .then((res) => console.log(res.data));
       })
       .catch((error) => {
         toast.error(error.code);

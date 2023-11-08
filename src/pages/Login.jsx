@@ -3,9 +3,11 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
 import toast from "react-hot-toast";
+import useAxios from "../hooks/useAxios";
 
 const Login = () => {
   const { userSignIn, setLoading, setUser, googleUserAuth } = useAuthContext();
+  const axiosCustom = useAxios();
   // const { handleGoogleAuth } = useGoogleAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,9 +22,16 @@ const Login = () => {
 
     //user sign in
     userSignIn(email, password)
-      .then(() => {
+      .then((result) => {
         toast.success("Logged in Successfully");
-        navigate(from, { replace: true });
+
+        // genreating token
+        const uid = result.user.uid;
+        const user_info = { uid };
+        axiosCustom.post("/api/v1/auth/create-token", user_info).then((res) => {
+          console.log(res.data);
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
         toast.error(error.code);
@@ -33,9 +42,15 @@ const Login = () => {
 
   const handleGoogleAuth = () => {
     googleUserAuth()
-      .then(() => {
+      .then((result) => {
         toast.success("Logged In Successfully");
-        navigate(from, { replace: true });
+        // genreating token
+        const uid = result.user.uid;
+        const user_info = { uid };
+        axiosCustom.post("/api/v1/auth/create-token", user_info).then((res) => {
+          console.log(res.data);
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
         toast.error(error.code);
