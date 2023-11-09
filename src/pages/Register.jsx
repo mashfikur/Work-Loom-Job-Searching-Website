@@ -60,6 +60,7 @@ const Register = () => {
               .then((res) => {
                 console.log(res.data);
                 navigate("/");
+                window.location.reload();
               });
           })
           .catch((error) => {
@@ -81,6 +82,7 @@ const Register = () => {
         axiosCustom.post("/api/v1/auth/create-token", user_info).then((res) => {
           console.log(res.data);
           navigate("/");
+          window.location.reload();
         });
       })
       .catch((error) => {

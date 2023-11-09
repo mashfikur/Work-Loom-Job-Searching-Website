@@ -30,6 +30,7 @@ const Login = () => {
         axiosCustom.post("/api/v1/auth/create-token", user_info).then((res) => {
           console.log(res.data);
           navigate(from, { replace: true });
+          window.location.reload();
         });
       })
       .catch((error) => {
@@ -49,6 +50,7 @@ const Login = () => {
         axiosCustom.post("/api/v1/auth/create-token", user_info).then((res) => {
           console.log(res.data);
           navigate(from, { replace: true });
+          window.location.reload();
         });
       })
       .catch((error) => {
