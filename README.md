@@ -2,7 +2,7 @@
 
 The Project is available here - [Live Link](https://work-loom.web.app/)
 
-This is a full stack react application , able to do CRUD methods with api calling and data fetching and updating from Date Base.
+This is a Full stack react application , able to do CRUD methods with api calling and data fetching and updating from Date Base.
 
 On the Frontend the project is using **React , React-router , Tailwind CSS ,Daisy UI , Axios etc** and many other third party react packages.
 
@@ -17,3 +17,5 @@ The User Authentication is Being handled with **Firebase Authentication** and AP
 - User can post jobs by creating account in the website and update job details along with the Applicaiton Deadline.
 - User can see a list of job they have posted and also the jobs they have applied to.
 - Job Details can be updated and deleted by a user and each Job card will show the total Job applicants number.
+
+-Job apply validation implemented, means a user can't apply for a job if the deadline is over . An error message will be displayed if the user tries it.
