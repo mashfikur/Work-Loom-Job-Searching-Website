@@ -2,7 +2,9 @@
 
 The Project is available here - [Live Link](https://work-loom.web.app/)
 
-This is a Full stack react application , able to do CRUD methods with api calling and data fetching and updating from Date Base.
+Server Side Code - [Code Link](https://github.com/mashfikur/Work-Loom-Server)
+
+This is a MERN Stack web application , able to do CRUD methods with api calling and data fetching and updating from Date Base.
 
 On the Frontend the project is using **React , React-router , Tailwind CSS ,Daisy UI , Axios etc** and many other third party react packages.
 
