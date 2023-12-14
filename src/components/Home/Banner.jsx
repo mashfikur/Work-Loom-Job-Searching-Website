@@ -81,22 +81,6 @@ const Banner = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* banner serch input */}
-          <div className="flex items-center">
-            <input
-              type="text"
-              placeholder="Search Jobs..."
-              className="input px-8 input-bordered focus:outline-none rounded-l-full w-full"
-            />
-            <div>
-              <button className="btn bg-third hover:bg-third border-none rounded-none rounded-r-full">
-                <div className="px-3">
-                  <BsSearch className="text-xl"></BsSearch>
-                </div>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
